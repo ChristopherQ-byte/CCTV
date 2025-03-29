@@ -119,7 +119,7 @@ end)
 util.AddNetworkString("Tripwire:Whitelist")
 net.Receive("Tripwire:Whitelist",function(_,ply)
 	local ent = net.ReadEntity()
-	if self:Getowning_ent() != ply then return end
+	if ent:Getowning_ent() != ply then return end
 	ent.WhitelistCPs = net.ReadBool()
 	ent:ReadWhitelist()
 end)
