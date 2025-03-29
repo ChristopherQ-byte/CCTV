@@ -127,8 +127,8 @@ end)
 net.Receive("Security:Repair",function(_,ply)
 	local ent = net.ReadEntity()
 	local cost = ent:GetRepairPrice()
-	if ply:GetMoney() < cost then return end
-	ply:TakeMoney(cost)
+	if ply:getDarkRPVar("money") < cost then return end
+	ply:addMoney(-cost)
 	ent:SetDestroyed(false)
 	ent:SetHealth(ent:GetMaxHealth())
 end)
