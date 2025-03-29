@@ -119,7 +119,7 @@ end)
 util.AddNetworkString("Tripwire:Whitelist")
 net.Receive("Tripwire:Whitelist",function(_,ply)
 	local ent = net.ReadEntity()
-	if self:Getowning_ent() != ply then return end
+	if ent:Getowning_ent() != ply then return end
 	ent.WhitelistCPs = net.ReadBool()
 	ent:ReadWhitelist()
 end)
@@ -127,8 +127,8 @@ end)
 net.Receive("Security:Repair",function(_,ply)
 	local ent = net.ReadEntity()
 	local cost = ent:GetRepairPrice()
-	if ply:GetMoney() < cost then return end
-	ply:TakeMoney(cost)
+	if ply:getDarkRPVar("money") < cost then return end
+	ply:addMoney(-cost)
 	ent:SetDestroyed(false)
 	ent:SetHealth(ent:GetMaxHealth())
 end)

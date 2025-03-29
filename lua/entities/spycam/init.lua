@@ -73,7 +73,7 @@ end
 net.Receive("Spycam",function(_,ply)
 	local camera = net.ReadEntity()
 
-	if self:Getowning_ent() != ply then return end
+	if camera:Getowning_ent() != ply then return end
 
 	local newKey = net.ReadString()
 	
